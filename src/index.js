@@ -21,7 +21,14 @@ const todo2 = new Todo(
   "02/12/20",
   "high"
 );
-projects[0].todos.push(todo1, todo2);
+
+const todo3 = new Todo(
+  "Finish the project",
+  "Brainstorm and finish",
+  "03/12/20",
+  "high"
+);
+projects[0].todos.push(todo1, todo2, todo3);
 
 container.appendChild(header(projects[0].name));
 container.appendChild(todoList(projects[0].todos));

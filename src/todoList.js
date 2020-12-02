@@ -1,17 +1,10 @@
-const todoList = (items) => {
-  // const element = document.createElement("div");
-  // let content = "";
-  // items.forEach((todo) => {
-  //   content += `
-  //     <div class="border border-primary my-2 mx-5 p-3 rounded">
-  //       <p>${todo.title}</p>
-  //       <span>${todo.dueDate}</span>
-  //     </div>
-  //   `;
-  // });
+import { showToDo } from "./todo";
 
+const todoList = (items) => {
+  const tableWrapper = document.createElement("div");
+  tableWrapper.id = "table-wrapper";
   const element = document.createElement("table");
-  element.classList.add("table", "table-hover", "todos-table");
+  element.classList.add("table", "todos-table");
   const tableHead = document.createElement("thead");
   tableHead.innerHTML = `
     <tr>
@@ -25,20 +18,21 @@ const todoList = (items) => {
   let content = ``;
   let index = 1;
   items.forEach((todo) => {
-    content += `
-      <tr>
-        <th scope="row">${index}</th>
+    let row = document.createElement("tr");
+    row.onclick = () => showToDo(todo);
+    row.innerHTML = `
+    <th scope="row">${index}</th>
         <td>${todo.title}</td>
         <td>${todo.dueDate}</td>
         <td>${todo.priority}</td>
-      </tr>
     `;
+    tableBody.appendChild(row);
     index += 1;
   });
-  tableBody.innerHTML = content;
   element.appendChild(tableHead);
   element.appendChild(tableBody);
-  return element;
+  tableWrapper.appendChild(element);
+  return tableWrapper;
 };
 
 export default todoList;
