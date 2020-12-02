@@ -13,6 +13,23 @@ module.exports = {
         use: ["style-loader", "css-loader"],
       },
       {
+        test: /\.(scss)$/,
+        use: [
+          {
+            // Adds CSS to the DOM by injecting a `<style>` tag
+            loader: "style-loader",
+          },
+          {
+            // Interprets `@import` and `url()` like `import/require()` and will resolve them
+            loader: "css-loader",
+          },
+          {
+            // Loads a SASS/SCSS file and compiles it to CSS
+            loader: "sass-loader",
+          },
+        ],
+      },
+      {
         test: /\.(png|svg|jpg|jpeg|gif)$/i,
         use: [
           { loader: "file-loader" },

@@ -1,3 +1,6 @@
+import 'bootstrap';
+import './scss/app.scss';
+
 import Todo from './todo'
 import Project from './project'
 
