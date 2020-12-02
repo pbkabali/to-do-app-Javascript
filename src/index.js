@@ -1,8 +1,9 @@
 import "bootstrap";
 import "./scss/app.scss";
+import "./css/styles.css";
 
 import Todo from "./todo";
-import projects from './projects';
+import projects from "./projects";
 import header from "./header";
 import todoList from "./todoList";
 

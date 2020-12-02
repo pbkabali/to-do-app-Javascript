@@ -6,7 +6,8 @@ const header = (heading) => {
     "d-flex",
     "flex-row-reverse",
     "justify-content-around",
-    "border-bottom"
+    "border-bottom",
+    "align-items-center"
   );
   const element1 = document.createElement("div");
 
@@ -14,8 +15,7 @@ const header = (heading) => {
     "text-center",
     "my-3",
     "font-weight-bold",
-    "text-uppercase",
-    "pb-3"
+    "text-uppercase"
   );
   element1.innerText = heading;
 
@@ -33,6 +33,5 @@ const header = (heading) => {
   element.appendChild(element2);
   return element;
 };
-
 
 export default header;
