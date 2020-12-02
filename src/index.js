@@ -2,13 +2,12 @@ import "bootstrap";
 import "./scss/app.scss";
 
 import Todo from "./todo";
-import Project from "./project";
+import projects from './projects';
 import header from "./header";
 import todoList from "./todoList";
 
 const container = document.getElementById("content");
-const defaultProject = new Project("Main project");
-const projects = [defaultProject];
+
 const todo1 = new Todo(
   "Plan of project",
   "Brainstorm and design",
@@ -21,7 +20,7 @@ const todo2 = new Todo(
   "02/12/20",
   "high"
 );
-defaultProject.todos.push(todo1, todo2);
+projects[0].todos.push(todo1, todo2);
 
 container.appendChild(header(projects[0].name));
 container.appendChild(todoList(projects[0].todos));

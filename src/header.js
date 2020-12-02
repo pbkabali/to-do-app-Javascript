@@ -1,3 +1,5 @@
+import { seeProjects } from "./projects";
+
 const header = (heading) => {
   const element = document.createElement("div");
   element.classList.add(
@@ -26,9 +28,11 @@ const header = (heading) => {
     "btn-primary"
   );
   element2.innerText = "See all projects";
+  element2.onclick = () => seeProjects();
   element.appendChild(element1);
   element.appendChild(element2);
   return element;
 };
+
 
 export default header;
