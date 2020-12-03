@@ -43,7 +43,7 @@ export const seeProjects = () => {
   projects.forEach((project) => {
     const item = document.createElement("h1");
     item.innerText = project.name;
-    item.onclick = () => openProject(project.name, project.todos);
+    item.onclick = () => openProject(project.name, project);
     element.appendChild(item);
   });
   wrapper.appendChild(element);
