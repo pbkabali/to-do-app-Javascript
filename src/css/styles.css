@@ -1,5 +1,12 @@
 .todos-table {
   width: 70%;
+}
+
+.center-div {
   margin-left: auto;
-  margin-right: auto;
+  margin-right: auto; 
+} *
+
+.back-todo {
+  width: 10em;
 }

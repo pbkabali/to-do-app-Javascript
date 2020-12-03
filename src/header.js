@@ -5,9 +5,10 @@ const header = (heading) => {
   element.classList.add(
     "d-flex",
     "flex-row-reverse",
-    "justify-content-around",
+    "justify-content-between",
     "border-bottom",
-    "align-items-center"
+    "align-items-center",
+    'px-3'
   );
   const element1 = document.createElement("div");
 
@@ -24,7 +25,7 @@ const header = (heading) => {
     "text-center",
     "my-3",
     "btn",
-    "btn-large",
+    "btn-lg",
     "btn-primary"
   );
   element2.innerText = "See all projects";
