@@ -1,4 +1,4 @@
-import { seeProjects } from "./projects";
+import { seeProjects, showProjectForm } from "./projects";
 
 const header = (heading) => {
   const element = document.createElement("div");
@@ -45,6 +45,7 @@ const header = (heading) => {
     "mr-1"
   );
   element4.innerText = "Create a Project";
+  element4.onclick = () => showProjectForm();
 
   element2.appendChild(element3);
   element2.appendChild(element4);

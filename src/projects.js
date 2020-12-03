@@ -18,13 +18,13 @@ const todo2 = new Todo(
   "high"
 );
 
-// const todo3 = new Todo(
-//   "Finish the project",
-//   "Brainstorm and finish",
-//   "03/12/20",
-//   "high"
-// );
-projects[0].todos.push(todo1, todo2);
+const todo3 = new Todo(
+  "Finish the project",
+  "Brainstorm and finish",
+  "03/12/20",
+  "high"
+);
+projects[0].todos.push(todo1, todo2, todo3);
 
 export const seeProjects = () => {
   const wrapper = document.getElementById("content");
@@ -32,6 +32,7 @@ export const seeProjects = () => {
   wrapper.appendChild(header("Project List"));
 
   const element = document.createElement("div");
+  element.id = "wrapper";
   let content = "";
   projects.forEach((project) => {
     content += `
@@ -42,6 +43,31 @@ export const seeProjects = () => {
   });
   element.innerHTML = content;
   wrapper.appendChild(element);
+};
+
+const createProject = () => {
+  const projectName = document.getElementById("project-name").value;
+  const newProject = new Project(projectName);
+  projects.push(newProject);
+  seeProjects();
+};
+
+export const showProjectForm = () => {
+  const wrapper = document.getElementById("wrapper");
+  const projectForm = document.createElement("div");
+  projectForm.classList.add("text-center", "font-weight-bold");
+  const projectName = document.createElement("input");
+  projectName.id = "project-name";
+  projectName.classList.add("m-3", "p-2");
+  projectName.placeholder = "Enter project name";
+  const submit = document.createElement("button");
+  submit.classList.add("btn", "btn-sm", "btn-success");
+  submit.innerText = "Add Project";
+  submit.onclick = () => createProject();
+  projectForm.appendChild(projectName);
+  projectForm.appendChild(submit);
+  wrapper.innerText = "";
+  wrapper.appendChild(projectForm);
 };
 
 export default projects;

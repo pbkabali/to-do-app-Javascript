@@ -1,10 +1,18 @@
 import showToDo from "./todoCard";
 
-
 const todoList = (items) => {
-  const tableWrapper = document.createElement('div');
+  const tableWrapper = document.createElement("div");
   const element = document.createElement("table");
-  element.classList.add("table", "todos-table",'center-div',);
+  element.classList.add(
+    "table",
+    "table-hover",
+    "todos-table",
+    "border-table",
+    "border",
+    "border-danger",
+    "center-div",
+    "mt-2"
+  );
   const tableHead = document.createElement("thead");
   tableHead.innerHTML = `
     <tr>
