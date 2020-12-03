@@ -1,6 +1,6 @@
 import Project from "./project";
 import header from "./header";
-import Todo from './todo';
+import Todo from "./todo";
 
 const defaultProject = new Project("Main project");
 const projects = [defaultProject];
@@ -18,20 +18,19 @@ const todo2 = new Todo(
   "high"
 );
 
-const todo3 = new Todo(
-  "Finish the project",
-  "Brainstorm and finish",
-  "03/12/20",
-  "high"
-);
-projects[0].todos.push(todo1, todo2, todo3);
-
+// const todo3 = new Todo(
+//   "Finish the project",
+//   "Brainstorm and finish",
+//   "03/12/20",
+//   "high"
+// );
+projects[0].todos.push(todo1, todo2);
 
 export const seeProjects = () => {
-  const wrapper = document.getElementById('content');
-  wrapper.innerText = '';
-  wrapper.appendChild(header('Project List'));
-  
+  const wrapper = document.getElementById("content");
+  wrapper.innerText = "";
+  wrapper.appendChild(header("Project List"));
+
   const element = document.createElement("div");
   let content = "";
   projects.forEach((project) => {
