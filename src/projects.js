@@ -1,6 +1,7 @@
 import Project from "./project";
 import header from "./header";
 import Todo from "./todo";
+import pageLoad from "./pageLoad";
 
 const defaultProject = new Project("Main project");
 const projects = [defaultProject];
@@ -26,6 +27,12 @@ const todo3 = new Todo(
 );
 projects[0].todos.push(todo1, todo2, todo3);
 
+const openProject = (projectName, todos) => {
+  const wrapper = document.getElementById("content");
+  wrapper.innerText = "";
+  pageLoad(projectName, todos);
+};
+
 export const seeProjects = () => {
   const wrapper = document.getElementById("content");
   wrapper.innerText = "";
@@ -33,15 +40,12 @@ export const seeProjects = () => {
 
   const element = document.createElement("div");
   element.id = "wrapper";
-  let content = "";
   projects.forEach((project) => {
-    content += `
-          <h1>
-            ${project.name}
-          </h1>
-        `;
+    const item = document.createElement("h1");
+    item.innerText = project.name;
+    item.onclick = () => openProject(project.name, project.todos);
+    element.appendChild(item);
   });
-  element.innerHTML = content;
   wrapper.appendChild(element);
 };
 
