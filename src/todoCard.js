@@ -1,5 +1,6 @@
 import todoList from "./todos";
-
+import deleteBtn from './deleteBtn';
+import { deleteToDo } from './todo';
 
 
 const backToList = (items) => {
@@ -24,14 +25,17 @@ const showToDo = (todo, items) => {
       "my-3",
       "btn",
       "btn-lg",
-      'mx-3',
+      'ml-3',
+      'mr-1',
       "btn-success"
     );
-    returnButton.innerText = "Return to to do list";
+    returnButton.innerText = "Return to to-do list";
     returnButton.onclick = () => backToList(items);
      wrapper.innerText = "";
     wrapper.appendChild(todoCard);
+    
     wrapper.appendChild(returnButton);
+    wrapper.appendChild(deleteBtn('to-do', deleteToDo));
   };
 
   export default showToDo;
