@@ -1,6 +1,8 @@
 import Todo from "./todo";
 import showToDo from "./todoCard";
 
+export const priorities = ["High", "Medium", "Low"];
+
 const createToDo = (project) => {
   const title = document.getElementById("todo-title").value;
   const description = document.getElementById("todo-description").value;

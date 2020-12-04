@@ -1,6 +1,7 @@
 import todoList from "./todos";
 import deleteBtn from "./deleteBtn";
 import { projects, openProject } from "./projects";
+import { priorities } from "./todos";
 
 const backToList = (project) => {
   const wrapper = document.getElementById("wrapper");
@@ -49,6 +50,20 @@ const showToDo = (todo, project, index) => {
   submit.innerText = "Move";
   submit.onclick = () => moveToProject(todo, project, index);
   wrapper.append(projectName, submit);
+
+  const priorityChange = document.createElement("select");
+  priorities.forEach((priority) => {
+    let option = document.createElement("option");
+    option.innerText = priority;
+    priorityChange.appendChild(option);
+  });
+  priorityChange.id = "priority-id";
+  priorityChange.classList.add("ml-5", "p-2");
+  const submitPriority = document.createElement("button");
+  submitPriority.classList.add("btn", "btn-sm", "btn-success");
+  submitPriority.innerText = "Change";
+  submitPriority.onclick = () => changePriority(todo, project, index);
+  wrapper.append(priorityChange, submitPriority);
 };
 
 const deleteToDoFromProject = (project, index) => {
@@ -67,6 +82,12 @@ const moveToProject = (todo, currentProject, currentIndex) => {
   newProject.todos.push(todo);
   openProject(newProject.name, newProject);
   deleteToDoFromProject(currentProject, currentIndex);
+};
+
+const changePriority = (todo, project, index) => {
+  const newPriority = document.getElementById("priority-id").value;
+  todo.priority = newPriority;
+  showToDo(todo, project, index);
 };
 
 export default showToDo;
