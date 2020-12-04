@@ -10,20 +10,20 @@ const todo1 = new Todo(
   "Plan of project",
   "Brainstorm and design",
   "02/12/20",
-  "high"
+  "High"
 );
 const todo2 = new Todo(
   "Setup the project",
   "Brainstorm and setup",
   "02/12/20",
-  "high"
+  "Medium"
 );
 
 const todo3 = new Todo(
   "Finish the project",
   "Brainstorm and finish",
   "03/12/20",
-  "high"
+  "Low"
 );
 projects[0].todos.push(todo1, todo2, todo3);
 
@@ -42,7 +42,16 @@ export const seeProjects = () => {
   element.id = "wrapper";
   projects.forEach((project) => {
     const item = document.createElement("h1");
-    item.classList.add('text-center', 'text-success', 'm-5', 'p-5', 'border', 'border-success', "rounded");
+    item.classList.add(
+      "project-list",
+      "text-center",
+      "text-success",
+      "m-5",
+      "p-5",
+      "border",
+      "border-success",
+      "rounded"
+    );
     item.innerText = project.name;
     item.onclick = () => openProject(project.name, project);
     element.appendChild(item);

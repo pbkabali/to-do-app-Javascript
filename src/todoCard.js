@@ -12,7 +12,7 @@ const backToList = (project) => {
 const showToDo = (todo, project, index) => {
   const wrapper = document.getElementById("wrapper");
   const todoCard = document.createElement("div");
-  todoCard.classList.add("m-3", "border", "rounded", "p-5", "text-center");
+  todoCard.classList.add("project-list", "m-3", "border", "rounded", "p-5", "text-center");
   todoCard.innerHTML = `
       <p>Title: <span>${todo.title}</span></p>
       <p>Description: <span>${todo.description}</span></p>
@@ -37,17 +37,19 @@ const showToDo = (todo, project, index) => {
   wrapper.appendChild(returnButton);
   wrapper.appendChild(deleteBtn("to-do", () => deleteToDo(project, index)));
   const projectName = document.createElement("select");
+  let optionDefault = document.createElement("option");
+  optionDefault.innerText = '';
+  projectName.appendChild(optionDefault);
   projects.forEach((project) => {
     let option = document.createElement("option");
     option.innerText = project.name;
     projectName.appendChild(option);
-  });
+ });
   projectName.id = "move-id";
   projectName.classList.add("ml-5");
   projectName.placeholder = "Move to project";
   const submit = document.createElement("button");
   submit.classList.add("my-3",
-  "my-3",
     "btn",
     "btn-lg",
     "mx-1",
@@ -87,17 +89,21 @@ const deleteToDo = (project, index) => {
 
 const moveToProject = (todo, currentProject, currentIndex) => {
   const targetProjectName = document.getElementById("move-id").value;
-  const projectNames = projects.map((project) => project.name);
+  if (targetProjectName) {
+    const projectNames = projects.map((project) => project.name);
   const newProject = projects[projectNames.indexOf(targetProjectName)];
   newProject.todos.push(todo);
   openProject(newProject.name, newProject);
   deleteToDoFromProject(currentProject, currentIndex);
+  }
 };
 
 const changePriority = (todo, project, index) => {
   const newPriority = document.getElementById("priority-id").value;
-  todo.priority = newPriority;
-  showToDo(todo, project, index);
+  if (newPriority) {
+    todo.priority = newPriority;
+    showToDo(todo, project, index);
+  }
 };
 
 export default showToDo;

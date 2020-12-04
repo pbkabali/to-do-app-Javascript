@@ -1,7 +1,7 @@
 import Todo from "./todo";
 import showToDo from "./todoCard";
 
-export const priorities = ['-----', "High", "Medium", "Low"];
+export const priorities = ['', "High", "Medium", "Low"];
 
 const createToDo = (project) => {
   const title = document.getElementById("todo-title").value;
@@ -18,21 +18,22 @@ const createToDo = (project) => {
 const showToDoForm = (project) => {
   const wrapper = document.getElementById("wrapper");
   const toDoForm = document.createElement("div");
-  toDoForm.classList.add("text-center", "font-weight-bold");
+  toDoForm.classList.add("todos-table", "center-div", "d-flex", "flex-column", "text-center", "font-weight-bold");
 
   const title = document.createElement("input");
   title.id = "todo-title";
-  title.classList.add("m-3", "p-2");
+  title.classList.add("my-3", "mx-1", "p-2", "text-muted");
   title.placeholder = "Enter to-do title";
 
   const description = document.createElement("input");
   description.id = "todo-description";
-  description.classList.add("m-3", "p-2");
+  description.classList.add("my-3", "mx-1", "p-2");
   description.placeholder = "Enter to-do description";
 
   const dueDate = document.createElement("input");
   dueDate.id = "todo-dueDate";
-  dueDate.classList.add("m-3", "p-2");
+  dueDate.type = "date";
+  dueDate.classList.add("my-3", "mx-1", "p-2", "text-muted");
   dueDate.placeholder = "Enter to-do dueDate";
 
   const priority = document.createElement("select");
@@ -42,12 +43,12 @@ const showToDoForm = (project) => {
     priority.appendChild(option);
   });
   priority.id = "todo-priority";
-  priority.classList.add("m-3", "p-2");
+  priority.classList.add("my-3", "mx-1", "p-2");
   priority.placeholder = "Choose priority";
 
   const submit = document.createElement("button");
-  submit.classList.add("btn", "btn-sm", "btn-success");
-  submit.innerText = "Add to-do";
+  submit.classList.add("btn", "btn-lg", "btn-success", "m-2");
+  submit.innerText = "Add To-Do";
   submit.onclick = () => createToDo(project);
   toDoForm.append(title, description, dueDate, priority, submit);
 
@@ -66,7 +67,7 @@ const todoList = (project) => {
     "btn-outline-success",
     "ml-3"
   );
-  addToDoBtn.innerText = "Create a to-do";
+  addToDoBtn.innerText = "Create a To-Do";
   addToDoBtn.onclick = () => showToDoForm(project);
   const element = document.createElement("table");
   element.classList.add(
@@ -89,9 +90,15 @@ const todoList = (project) => {
     </tr>
   `;
   let tableBody = document.createElement("tbody");
+  const priorityClass = {
+    'high' : 'high-priority',
+    'medium' : 'medium-priority',
+    'low' : 'low-priority' 
+  }
   let index = 1;
   project.todos.forEach((todo) => {
     let row = document.createElement("tr");
+    row.classList.add(priorityClass[todo.priority.toLowerCase()]);
     let arrIndex = index - 1;
     row.onclick = () => showToDo(todo, project, arrIndex);
     row.innerHTML = `

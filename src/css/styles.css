@@ -1,3 +1,8 @@
+body {
+  background-image: url(https://cdn.pixabay.com/photo/2014/08/26/19/15/notebook-428292_960_720.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+}
 .todos-table {
   width: 70%;
 }
@@ -14,6 +19,27 @@ select {
   padding: 0.78rem;
 }
 
-#project-name {
+#project-name,
+#todo-priority {
   padding: 0.65rem !important;
+}
+
+.project-list {
+  background-color: #fff;
+  background-color: rgba(255, 255, 255, 0.5);
+}
+
+.high-priority {
+  background-color: red;
+  color: whitesmoke;
+}
+
+.medium-priority {
+  background-color: blue;
+  color: whitesmoke;
+}
+
+.low-priority {
+  background-color: black;
+  color: whitesmoke;
 }
