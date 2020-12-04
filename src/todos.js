@@ -1,24 +1,35 @@
 import Todo from "./todo";
 import showToDo from "./todoCard";
+import projects, { saveToLocalStorage } from "./projects";
 
-export const priorities = ['', "High", "Medium", "Low"];
+export const priorities = ["High", "Medium", "Low"];
 
-const createToDo = (project) => {
+const createToDo = (project, projectIndex) => {
   const title = document.getElementById("todo-title").value;
   const description = document.getElementById("todo-description").value;
   const dueDate = document.getElementById("todo-dueDate").value;
   const priority = document.getElementById("todo-priority").value;
   const newToDo = new Todo(title, description, dueDate, priority);
   project.todos.push(newToDo);
+  const availableProjects = projects();
+  availableProjects[projectIndex].todos.push(newToDo);
+  saveToLocalStorage(availableProjects);
   const wrapper = document.getElementById("wrapper");
   wrapper.innerText = "";
-  wrapper.appendChild(todoList(project));
+  wrapper.appendChild(todoList(project, projectIndex));
 };
 
-const showToDoForm = (project) => {
+const showToDoForm = (project, projectIndex) => {
   const wrapper = document.getElementById("wrapper");
   const toDoForm = document.createElement("div");
-  toDoForm.classList.add("todos-table", "center-div", "d-flex", "flex-column", "text-center", "font-weight-bold");
+  toDoForm.classList.add(
+    "todos-table",
+    "center-div",
+    "d-flex",
+    "flex-column",
+    "text-center",
+    "font-weight-bold"
+  );
 
   const title = document.createElement("input");
   title.id = "todo-title";
@@ -49,14 +60,14 @@ const showToDoForm = (project) => {
   const submit = document.createElement("button");
   submit.classList.add("btn", "btn-lg", "btn-success", "m-2");
   submit.innerText = "Add To-Do";
-  submit.onclick = () => createToDo(project);
+  submit.onclick = () => createToDo(project, projectIndex);
   toDoForm.append(title, description, dueDate, priority, submit);
 
   wrapper.innerText = "";
   wrapper.appendChild(toDoForm);
 };
 
-const todoList = (project) => {
+const todoList = (project, projectIndex) => {
   const tableWrapper = document.createElement("div");
   const addToDoBtn = document.createElement("div");
   addToDoBtn.classList.add(
@@ -68,7 +79,7 @@ const todoList = (project) => {
     "ml-3"
   );
   addToDoBtn.innerText = "Create a To-Do";
-  addToDoBtn.onclick = () => showToDoForm(project);
+  addToDoBtn.onclick = () => showToDoForm(project, projectIndex);
   const element = document.createElement("table");
   element.classList.add(
     "table",
@@ -91,16 +102,16 @@ const todoList = (project) => {
   `;
   let tableBody = document.createElement("tbody");
   const priorityClass = {
-    'high' : 'high-priority',
-    'medium' : 'medium-priority',
-    'low' : 'low-priority' 
-  }
+    high: "high-priority",
+    medium: "medium-priority",
+    low: "low-priority",
+  };
   let index = 1;
   project.todos.forEach((todo) => {
     let row = document.createElement("tr");
     row.classList.add(priorityClass[todo.priority.toLowerCase()]);
     let arrIndex = index - 1;
-    row.onclick = () => showToDo(todo, project, arrIndex);
+    row.onclick = () => showToDo(todo, project, arrIndex, projectIndex);
     row.innerHTML = `
     <th scope="row">${index}</th>
         <td>${todo.title}</td>

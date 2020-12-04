@@ -4,7 +4,15 @@ import Todo from "./todo";
 import pageLoad from "./pageLoad";
 
 const defaultProject = new Project("Main project");
-export const projects = [defaultProject];
+export const initialProjects = [defaultProject];
+
+export const saveToLocalStorage = (data) => {
+  localStorage.setItem("projects", JSON.stringify(data));
+};
+
+const projects = () => {
+  return JSON.parse(localStorage.getItem("projects"));
+};
 
 const todo1 = new Todo(
   "Plan of project",
@@ -25,12 +33,12 @@ const todo3 = new Todo(
   "03/12/20",
   "Low"
 );
-projects[0].todos.push(todo1, todo2, todo3);
+initialProjects[0].todos.push(todo1, todo2, todo3);
 
-export const openProject = (projectName, project) => {
+export const openProject = (projectName, project, projectIndex) => {
   const wrapper = document.getElementById("content");
   wrapper.innerText = "";
-  pageLoad(projectName, project);
+  pageLoad(projectName, project, projectIndex);
 };
 
 export const seeProjects = () => {
@@ -40,7 +48,8 @@ export const seeProjects = () => {
 
   const element = document.createElement("div");
   element.id = "wrapper";
-  projects.forEach((project) => {
+  let index = 0;
+  projects().forEach((project) => {
     const item = document.createElement("h1");
     item.classList.add(
       "project-list",
@@ -53,7 +62,8 @@ export const seeProjects = () => {
       "rounded"
     );
     item.innerText = project.name;
-    item.onclick = () => openProject(project.name, project);
+    let projectIndex = index;
+    item.onclick = () => openProject(project.name, project, projectIndex);
     element.appendChild(item);
   });
   wrapper.appendChild(element);
@@ -62,7 +72,9 @@ export const seeProjects = () => {
 const createProject = () => {
   const projectName = document.getElementById("project-name").value;
   const newProject = new Project(projectName);
-  projects.push(newProject);
+  const availableProjects = projects();
+  availableProjects.push(newProject);
+  saveToLocalStorage(availableProjects);
   seeProjects();
 };
 
