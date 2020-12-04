@@ -43,11 +43,16 @@ const showToDo = (todo, project, index) => {
     projectName.appendChild(option);
   });
   projectName.id = "move-id";
-  projectName.classList.add("ml-5", "p-2");
+  projectName.classList.add("ml-5");
   projectName.placeholder = "Move to project";
   const submit = document.createElement("button");
-  submit.classList.add("btn", "btn-sm", "btn-success");
-  submit.innerText = "Move";
+  submit.classList.add("my-3",
+  "my-3",
+    "btn",
+    "btn-lg",
+    "mx-1",
+    "btn-success");
+  submit.innerText = "Move to project";
   submit.onclick = () => moveToProject(todo, project, index);
   wrapper.append(projectName, submit);
 
@@ -58,10 +63,15 @@ const showToDo = (todo, project, index) => {
     priorityChange.appendChild(option);
   });
   priorityChange.id = "priority-id";
-  priorityChange.classList.add("ml-5", "p-2");
+  priorityChange.classList.add("ml-5");
   const submitPriority = document.createElement("button");
-  submitPriority.classList.add("btn", "btn-sm", "btn-success");
-  submitPriority.innerText = "Change";
+  submitPriority.classList.add(
+  "btn",
+  "btn-lg",
+  "my-2",
+  "mx-1",
+  "btn-success");
+  submitPriority.innerText = "Change priority";
   submitPriority.onclick = () => changePriority(todo, project, index);
   wrapper.append(priorityChange, submitPriority);
 };

@@ -17,6 +17,7 @@ const header = (heading) => {
     "my-3",
     "font-weight-bold",
     "text-uppercase",
+    "text-primary",
     "h3"
   );
   element1.innerText = heading;

@@ -42,6 +42,15 @@ export const seeProjects = () => {
   element.id = "wrapper";
   projects.forEach((project) => {
     const item = document.createElement("h1");
+    item.classList.add(
+      "text-center",
+      "text-success",
+      "m-5",
+      "p-5",
+      "border",
+      "border-success",
+      "rounded"
+    );
     item.innerText = project.name;
     item.onclick = () => openProject(project.name, project);
     element.appendChild(item);

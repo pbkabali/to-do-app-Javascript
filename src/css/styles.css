@@ -9,3 +9,7 @@
 * .back-todo {
   width: 10em;
 }
+
+select {
+  padding: 0.78rem;
+}
