@@ -1,20 +1,19 @@
 import Todo from "./todo";
 import showToDo from "./todoCard";
 
-
 const createToDo = (project) => {
   const title = document.getElementById("todo-title").value;
   const description = document.getElementById("todo-description").value;
   const dueDate = document.getElementById("todo-dueDate").value;
   const priority = document.getElementById("todo-priority").value;
-  const newToDo= new Todo(title, description, dueDate, priority);
+  const newToDo = new Todo(title, description, dueDate, priority);
   project.todos.push(newToDo);
-  const wrapper = document.getElementById('wrapper');
-  wrapper.innerText = '';
+  const wrapper = document.getElementById("wrapper");
+  wrapper.innerText = "";
   wrapper.appendChild(todoList(project));
-  }
+};
 
-  const showToDoForm = (project) => {
+const showToDoForm = (project) => {
   const wrapper = document.getElementById("wrapper");
   const toDoForm = document.createElement("div");
   toDoForm.classList.add("text-center", "font-weight-bold");
@@ -44,14 +43,14 @@ const createToDo = (project) => {
   submit.innerText = "Add to-do";
   submit.onclick = () => createToDo(project);
   toDoForm.append(title, description, dueDate, priority, submit);
-  
+
   wrapper.innerText = "";
   wrapper.appendChild(toDoForm);
 };
 
 const todoList = (project) => {
   const tableWrapper = document.createElement("div");
-  const addToDoBtn = document.createElement('div');
+  const addToDoBtn = document.createElement("div");
   addToDoBtn.classList.add(
     "text-center",
     "my-3",
@@ -62,7 +61,6 @@ const todoList = (project) => {
   );
   addToDoBtn.innerText = "Create a to-do";
   addToDoBtn.onclick = () => showToDoForm(project);
-  // addToDoBtn.onclick = () => console.log('Create a to-do');
   const element = document.createElement("table");
   element.classList.add(
     "table",
@@ -87,7 +85,8 @@ const todoList = (project) => {
   let index = 1;
   project.todos.forEach((todo) => {
     let row = document.createElement("tr");
-    row.onclick = () => showToDo(todo, project);
+    let arrIndex = index - 1;
+    row.onclick = () => showToDo(todo, project, arrIndex);
     row.innerHTML = `
     <th scope="row">${index}</th>
         <td>${todo.title}</td>
@@ -98,7 +97,6 @@ const todoList = (project) => {
     index += 1;
   });
   element.append(tableHead, tableBody);
-  // element.appendChild(tableBody);
   tableWrapper.appendChild(addToDoBtn);
   tableWrapper.appendChild(element);
   return tableWrapper;

@@ -7,7 +7,4 @@ class Todo {
   }
 }
 
-export const deleteToDo = () => {
-  console.log('delete to-do');
-}
 export default Todo;
