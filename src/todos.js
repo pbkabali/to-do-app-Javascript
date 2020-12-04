@@ -35,7 +35,12 @@ const showToDoForm = (project) => {
   dueDate.classList.add("m-3", "p-2");
   dueDate.placeholder = "Enter to-do dueDate";
 
-  const priority = document.createElement("input");
+  const priority = document.createElement("select");
+  priorities.forEach((choice) => {
+    let option = document.createElement("option");
+    option.innerText = choice;
+    priority.appendChild(option);
+  });
   priority.id = "todo-priority";
   priority.classList.add("m-3", "p-2");
   priority.placeholder = "Choose priority";
