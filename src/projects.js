@@ -42,15 +42,7 @@ export const seeProjects = () => {
   element.id = "wrapper";
   projects.forEach((project) => {
     const item = document.createElement("h1");
-    item.classList.add(
-      "text-center",
-      "text-success",
-      "m-5",
-      "p-5",
-      "border",
-      "border-success",
-      "rounded"
-    );
+    item.classList.add('text-center', 'text-success', 'm-5', 'p-5', 'border', 'border-success', "rounded");
     item.innerText = project.name;
     item.onclick = () => openProject(project.name, project);
     element.appendChild(item);
@@ -71,10 +63,10 @@ export const showProjectForm = () => {
   projectForm.classList.add("text-center", "font-weight-bold");
   const projectName = document.createElement("input");
   projectName.id = "project-name";
-  projectName.classList.add("m-3", "p-2");
+  projectName.classList.add("my-3");
   projectName.placeholder = "Enter project name";
   const submit = document.createElement("button");
-  submit.classList.add("btn", "btn-sm", "btn-success");
+  submit.classList.add("btn", "btn-lg", "btn-success", "ml-1", "my-1");
   submit.innerText = "Add Project";
   submit.onclick = () => createProject();
   projectForm.appendChild(projectName);

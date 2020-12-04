@@ -31,7 +31,7 @@ const header = (heading) => {
     "btn",
     "btn-lg",
     "btn-primary",
-    "mr-1"
+    "mr-3"
   );
   element3.innerText = "See all projects";
   element3.onclick = () => seeProjects();

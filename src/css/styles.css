@@ -13,3 +13,7 @@
 select {
   padding: 0.78rem;
 }
+
+#project-name {
+  padding: 0.65rem !important;
+}
