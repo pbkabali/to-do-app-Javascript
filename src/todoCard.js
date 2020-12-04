@@ -1,5 +1,6 @@
 import todoList from "./todos";
 import deleteBtn from "./deleteBtn";
+import { projects, openProject } from "./projects";
 
 const backToList = (project) => {
   const wrapper = document.getElementById("wrapper");
@@ -34,11 +35,38 @@ const showToDo = (todo, project, index) => {
 
   wrapper.appendChild(returnButton);
   wrapper.appendChild(deleteBtn("to-do", () => deleteToDo(project, index)));
+  const projectName = document.createElement("select");
+  projects.forEach((project) => {
+    let option = document.createElement("option");
+    option.innerText = project.name;
+    projectName.appendChild(option);
+  });
+  projectName.id = "move-id";
+  projectName.classList.add("ml-5", "p-2");
+  projectName.placeholder = "Move to project";
+  const submit = document.createElement("button");
+  submit.classList.add("btn", "btn-sm", "btn-success");
+  submit.innerText = "Move";
+  submit.onclick = () => moveToProject(todo, project, index);
+  wrapper.append(projectName, submit);
+};
+
+const deleteToDoFromProject = (project, index) => {
+  project.todos.splice(index, 1);
 };
 
 const deleteToDo = (project, index) => {
-  project.todos.splice(index, 1);
+  deleteToDoFromProject(project, index);
   backToList(project);
+};
+
+const moveToProject = (todo, currentProject, currentIndex) => {
+  const targetProjectName = document.getElementById("move-id").value;
+  const projectNames = projects.map((project) => project.name);
+  const newProject = projects[projectNames.indexOf(targetProjectName)];
+  newProject.todos.push(todo);
+  openProject(newProject.name, newProject);
+  deleteToDoFromProject(currentProject, currentIndex);
 };
 
 export default showToDo;

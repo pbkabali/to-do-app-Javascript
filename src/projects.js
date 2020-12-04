@@ -4,7 +4,7 @@ import Todo from "./todo";
 import pageLoad from "./pageLoad";
 
 const defaultProject = new Project("Main project");
-const projects = [defaultProject];
+export const projects = [defaultProject];
 
 const todo1 = new Todo(
   "Plan of project",
@@ -27,10 +27,10 @@ const todo3 = new Todo(
 );
 projects[0].todos.push(todo1, todo2, todo3);
 
-const openProject = (projectName, todos) => {
+export const openProject = (projectName, project) => {
   const wrapper = document.getElementById("content");
   wrapper.innerText = "";
-  pageLoad(projectName, todos);
+  pageLoad(projectName, project);
 };
 
 export const seeProjects = () => {
