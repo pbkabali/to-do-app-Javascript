@@ -3,6 +3,7 @@ body {
   background-repeat: no-repeat;
   background-size: cover;
 }
+
 .todos-table {
   width: 70%;
 }
@@ -11,6 +12,7 @@ body {
   margin-left: auto;
   margin-right: auto;
 }
+
 * .back-todo {
   width: 10em;
 }
@@ -42,4 +44,10 @@ select {
 .low-priority {
   background-color: black;
   color: whitesmoke;
+}
+
+.card-style {
+  border: 15px solid lightblue !important;
+  padding: 40px !important;
+  border-radius: 55px !important;
 }
