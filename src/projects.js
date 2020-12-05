@@ -14,27 +14,6 @@ const projects = () => {
   return JSON.parse(localStorage.getItem("projects"));
 };
 
-const todo1 = new Todo(
-  "Plan of project",
-  "Brainstorm and design",
-  "02/12/20",
-  "High"
-);
-const todo2 = new Todo(
-  "Setup the project",
-  "Brainstorm and setup",
-  "02/12/20",
-  "Medium"
-);
-
-const todo3 = new Todo(
-  "Finish the project",
-  "Brainstorm and finish",
-  "03/12/20",
-  "Low"
-);
-initialProjects[0].todos.push(todo1, todo2, todo3);
-
 export const openProject = (projectName, project, projectIndex) => {
   const wrapper = document.getElementById("content");
   wrapper.innerText = "";
@@ -65,6 +44,7 @@ export const seeProjects = () => {
     let projectIndex = index;
     item.onclick = () => openProject(project.name, project, projectIndex);
     element.appendChild(item);
+    index += 1;
   });
   wrapper.appendChild(element);
 };

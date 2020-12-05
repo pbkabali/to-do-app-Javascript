@@ -9,4 +9,5 @@ if (projects()) {
   pageLoad(projects()[0].name, projects()[0], 0);
 } else {
   saveToLocalStorage(initialProjects);
+  pageLoad(projects()[0].name, projects()[0], 0);
 }

@@ -49,10 +49,12 @@ const showToDo = (todo, project, index, projectIndex) => {
   let optionDefault = document.createElement("option");
   optionDefault.innerText = "";
   projectName.appendChild(optionDefault);
+  let newProjectIndex = 1;
   projects().forEach((project) => {
     let option = document.createElement("option");
-    option.innerText = project.name;
+    option.innerText = `${newProjectIndex}. ${project.name}`;
     projectName.appendChild(option);
+    newProjectIndex += 1;
   });
   projectName.id = "move-id";
   projectName.classList.add("ml-5");
@@ -60,7 +62,7 @@ const showToDo = (todo, project, index, projectIndex) => {
   const submit = document.createElement("button");
   submit.classList.add("my-3", "btn", "btn-lg", "mx-1", "btn-success");
   submit.innerText = "Move to project";
-  submit.onclick = () => moveToProject(todo, project, index);
+  submit.onclick = () => moveToProject(todo, index, projectIndex);
   wrapper.append(projectName, submit);
   const priorityChange = document.createElement("select");
   const priorityDefault = document.createElement("option");
@@ -93,14 +95,17 @@ const deleteToDo = (project, index, projectIndex) => {
   backToList(project, projectIndex);
 };
 
-const moveToProject = (todo, currentProject, currentIndex) => {
-  const targetProjectName = document.getElementById("move-id").value;
-  if (targetProjectName) {
-    const projectNames = projects.map((project) => project.name);
-    const newProject = projects[projectNames.indexOf(targetProjectName)];
+const moveToProject = (todo, currentIndex, projectIndex) => {
+  const targetProjectIndex =
+    parseInt(document.getElementById("move-id").value[0]) - 1;
+  if (targetProjectIndex >= 0) {
+    const availableProjects = projects();
+    const oldProject = availableProjects[projectIndex];
+    const newProject = availableProjects[targetProjectIndex];
     newProject.todos.push(todo);
-    openProject(newProject.name, newProject);
-    deleteToDoFromProject(currentProject, currentIndex);
+    openProject(newProject.name, newProject, targetProjectIndex);
+    oldProject.todos.splice(currentIndex, 1);
+    saveToLocalStorage(availableProjects);
   }
 };
 

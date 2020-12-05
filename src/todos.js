@@ -80,19 +80,21 @@ const todoList = (project, projectIndex) => {
   );
   addToDoBtn.innerText = "Create a To-Do";
   addToDoBtn.onclick = () => showToDoForm(project, projectIndex);
-  const element = document.createElement("table");
-  element.classList.add(
-    "table",
-    "table-hover",
-    "todos-table",
-    "border-table",
-    "border",
-    "border-danger",
-    "center-div",
-    "mt-2"
-  );
-  const tableHead = document.createElement("thead");
-  tableHead.innerHTML = `
+  tableWrapper.appendChild(addToDoBtn);
+  if (project.todos.length > 0) {
+    const element = document.createElement("table");
+    element.classList.add(
+      "table",
+      "table-hover",
+      "todos-table",
+      "border-table",
+      "border",
+      "border-danger",
+      "center-div",
+      "mt-2"
+    );
+    const tableHead = document.createElement("thead");
+    tableHead.innerHTML = `
     <tr>
       <th scope="col">#</th>
       <th scope="col">Title</th>
@@ -100,30 +102,36 @@ const todoList = (project, projectIndex) => {
       <th scope="col">Priority</th>
     </tr>
   `;
-  let tableBody = document.createElement("tbody");
-  const priorityClass = {
-    high: "high-priority",
-    medium: "medium-priority",
-    low: "low-priority",
-  };
-  let index = 1;
-  project.todos.forEach((todo) => {
-    let row = document.createElement("tr");
-    row.classList.add(priorityClass[todo.priority.toLowerCase()]);
-    let arrIndex = index - 1;
-    row.onclick = () => showToDo(todo, project, arrIndex, projectIndex);
-    row.innerHTML = `
+    let tableBody = document.createElement("tbody");
+    const priorityClass = {
+      high: "high-priority",
+      medium: "medium-priority",
+      low: "low-priority",
+    };
+    let index = 1;
+    project.todos.forEach((todo) => {
+      let row = document.createElement("tr");
+      row.classList.add(priorityClass[todo.priority.toLowerCase()]);
+      let arrIndex = index - 1;
+      row.onclick = () => showToDo(todo, project, arrIndex, projectIndex);
+      row.innerHTML = `
     <th scope="row">${index}</th>
         <td>${todo.title}</td>
         <td>${todo.dueDate}</td>
         <td>${todo.priority}</td>
     `;
-    tableBody.appendChild(row);
-    index += 1;
-  });
-  element.append(tableHead, tableBody);
-  tableWrapper.appendChild(addToDoBtn);
-  tableWrapper.appendChild(element);
+      tableBody.appendChild(row);
+      index += 1;
+    });
+    element.append(tableHead, tableBody);
+    tableWrapper.appendChild(element);
+  } else {
+    const message = document.createElement("p");
+    message.classList.add("text-center", "text-primary", "mt-5");
+    message.innerText =
+      "There are no to-dos in this project yet. Click the button to add a new to-do";
+    tableWrapper.appendChild(message);
+  }
   return tableWrapper;
 };
 
