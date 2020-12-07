@@ -51,3 +51,15 @@ select {
   padding: 40px !important;
   border-radius: 55px !important;
 }
+
+.notice {
+  width: 40%;
+  position: fixed;
+  z-index: 5;
+  padding-top: 20px;
+  left: 30%;
+  top: 20vh;
+  background-color: rgb(0, 0, 0);
+  /* background-color: rgba(0, 0, 0, 0.4); */
+  color: whitesmoke;
+}
