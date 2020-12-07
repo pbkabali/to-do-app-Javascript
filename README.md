@@ -1,65 +1,70 @@
 ![](https://img.shields.io/badge/Microverse-blueviolet)
 
-# Project Name
+# To-Do-App-Javascript
 
-> One paragraph statement about the project.
+> This is a single page application for a to-do list.
 
 ![screenshot](./app_screenshot.png)
 
-Additional description about the project and its features.
+All page information dynamically generated and component loading achieved using pure Javascript. Persistence is with local storage
 
 ## Built With
 
-- Major languages,
-- frameworks,
-- technologies used
+- HTML5,
+- CSS3,
+- Bootstrap,
+- Javascript,
+- Webpack
 
 ## Live Demo
 
-[Live Demo Link](https://livedemo.com)
-
+[Live Demo Link](https://raw.githack.com/pbkabali/to-do-app-Javascript/app-build/dist/index.html)
 
 ## Getting Started
 
-**This is an example of how you may give instructions on setting up your project locally.**
-**Modify this file to match your project, remove sections that don't apply. For example: delete the testing section if the currect project doesn't require testing.**
-
-
-To get a local copy up and running follow these simple example steps.
+To get a local copy up and running in development mode, follow these simple steps.
 
 ### Prerequisites
 
+- Node.js
+- Browser
+- Terminal
+
 ### Setup
+
+Clone the project from [here](https://github.com/pbkabali/to-do-app-Javascript)
 
 ### Install
 
+Run `npm install` to get all the dependencies.
+
+Run `npm run build` for one time build of bundle after changes.
+
+Run `npm run watch` to run webpack build in watch mode.
+
 ### Usage
 
-### Run tests
-
-### Deployment
-
-
+Open `./dist/index.html` in your browser
 
 ## Authors
 
-👤 **Author1**
+👤 **Paul Balitema Kabali**
 
-- Github: [@githubhandle](https://github.com/githubhandle)
-- Twitter: [@twitterhandle](https://twitter.com/twitterhandle)
-- Linkedin: [linkedin](https://linkedin.com/linkedinhandle)
+- Github: [@pbkabali](https://github.com/pbkabali)
+- Twitter: [@pbkabali](https://twitter.com/pbkabali)
+- Linkedin: [engineerbpk](https://linkedin.com/in/engineerbpk)
 
-👤 **Author2**
+👤 **Oksana Petrova**
 
-- Github: [@githubhandle](https://github.com/githubhandle)
-- Twitter: [@twitterhandle](https://twitter.com/twitterhandle)
-- Linkedin: [linkedin](https://linkedin.com/linkedinhandle)
+- Github:[@Laguna1](https://github.com/Laguna1)
+- Linkedin: [Oksana Petrova](https://www.linkedin.com/in/oksana-petrova-005bb0145/)
+- Twitter: [Oksana Petrova](https://twitter.com/OksanaP48303303)
 
 ## 🤝 Contributing
 
 Contributions, issues and feature requests are welcome!
 
-Feel free to check the [issues page](issues/).
+Feel free to check the [issues page](https://github.com/pbkabali/to-do-app-Javascript/issues).
 
 ## Show your support
 
@@ -67,10 +72,8 @@ Give a ⭐️ if you like this project!
 
 ## Acknowledgments
 
-- Hat tip to anyone whose code was used
-- Inspiration
-- etc
+- [The Odin Project](https://www.theodinproject.com/)
 
 ## 📝 License
 
-This project is [MIT](lic.url) licensed.
+This project is [MIT](https://opensource.org/licenses/MIT) licensed.

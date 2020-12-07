@@ -1,0 +1,72 @@
+body {
+  background-image: url(https://cdn.pixabay.com/photo/2014/08/26/19/15/notebook-428292_960_720.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.todos-table {
+  width: 70%;
+}
+
+.center-div {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+* .back-todo {
+  width: 10em;
+}
+
+select {
+  padding: 0.78rem;
+}
+
+#project-name,
+#todo-priority {
+  padding: 0.65rem !important;
+}
+
+.project-list {
+  transition: background-color 0.5s ease;
+  background-color: #fff;
+  background-color: rgba(255, 255, 255, 0.5);
+}
+
+.project-list:hover {
+  cursor: pointer;
+  background-color: #fff;
+}
+
+.high-priority {
+  background-color: red;
+  color: whitesmoke;
+}
+
+.medium-priority {
+  background-color: blue;
+  color: whitesmoke;
+}
+
+.low-priority {
+  background-color: black;
+  color: whitesmoke;
+}
+
+.card-style {
+  border: 15px solid lightblue !important;
+  padding: 40px !important;
+  border-radius: 55px !important;
+}
+
+.notice {
+  width: 40%;
+  position: fixed;
+  z-index: 5;
+  padding-top: 20px;
+  left: 30%;
+  top: 20vh;
+  background-color: rgb(0, 0, 0);
+
+  /* background-color: rgba(0, 0, 0, 0.4); */
+  color: whitesmoke;
+}
