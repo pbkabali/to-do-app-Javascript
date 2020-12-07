@@ -1,6 +1,6 @@
 ![](https://img.shields.io/badge/Microverse-blueviolet)
 
-# Project Name
+# To-Do-App-Javascript
 
 > This is a single page application for a to-do list.
 
@@ -12,7 +12,8 @@ All page information dynamically generated and component loading achieved using 
 
 - HTML5,
 - CSS3,
-- Javascript
+- Bootstrap,
+- Javascript,
 - Webpack
 
 ## Live Demo
