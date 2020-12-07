@@ -4,6 +4,8 @@
 import todoList, { priorities } from "./todos";
 import deleteBtn from "./deleteBtn";
 import projects, { openProject, saveToLocalStorage } from "./projects";
+import { openNotice } from "./notice";
+import confirm from "./confirm";
 
 const backToList = (project, projectIndex) => {
   const wrapper = document.getElementById("wrapper");
@@ -19,19 +21,27 @@ const deleteToDoFromProject = (project, index, projectIndex) => {
 };
 
 const deleteToDo = (project, index, projectIndex) => {
-  deleteToDoFromProject(project, index, projectIndex);
-  backToList(project, projectIndex);
+  const dediv = document.getElementById("notification-div");
+  dediv.appendChild(
+    confirm("Are you sure you want to delete this to-do?", () => {
+      deleteToDoFromProject(project, index, projectIndex);
+      backToList(project, projectIndex);
+    })
+  );
 };
 
 const moveToProject = (todo, currentIndex, projectIndex) => {
   const targetProjectIndex =
     parseInt(document.getElementById("move-id").value[0], 10) - 1;
-  if (targetProjectIndex >= 0) {
-    const availableProjects = projects();
-    const oldProject = availableProjects[projectIndex];
-    const newProject = availableProjects[targetProjectIndex];
+  const availableProjects = projects();
+  const oldProject = availableProjects[projectIndex];
+  const newProject = availableProjects[targetProjectIndex];
+  if (newProject.name == oldProject.name) {
+    openNotice(`Please select a different project`);
+  } else {
     newProject.todos.push(todo);
     openProject(newProject.name, newProject, targetProjectIndex);
+    openNotice(`To-do successfully moved to ${newProject.name} project`);
     oldProject.todos.splice(currentIndex, 1);
     saveToLocalStorage(availableProjects);
   }
@@ -39,17 +49,22 @@ const moveToProject = (todo, currentIndex, projectIndex) => {
 
 const changePriority = (todo, project, index, projectIndex) => {
   const newPriority = document.getElementById("priority-id").value;
-  if (newPriority) {
+  if (newPriority == todo.priority) {
+    openNotice(`Please select a different priority`);
+  } else {
     todo.priority = newPriority;
     const availableProjects = projects();
     availableProjects[projectIndex].todos[index].priority = newPriority;
     saveToLocalStorage(availableProjects);
     showToDo(todo, project, index, projectIndex);
+    openNotice(`Priority succesfully changed to ${newPriority}`);
   }
 };
 
 const showToDo = (todo, project, index, projectIndex) => {
   const wrapper = document.getElementById("wrapper");
+  const notificationDiv = document.createElement("div");
+  notificationDiv.id = "notification-div";
   const todoCard = document.createElement("div");
   todoCard.classList.add(
     "project-list",
@@ -78,7 +93,7 @@ const showToDo = (todo, project, index, projectIndex) => {
   returnButton.onclick = () => backToList(project, projectIndex);
   wrapper.innerText = "";
   wrapper.appendChild(todoCard);
-
+  wrapper.appendChild(notificationDiv);
   wrapper.appendChild(returnButton);
   wrapper.appendChild(
     deleteBtn("to-do", () => deleteToDo(project, index, projectIndex))
