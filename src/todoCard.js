@@ -1,13 +1,13 @@
 /* eslint-disable import/no-cycle */
 /* eslint-disable no-use-before-define */
 
-import todoList, { priorities } from './todos';
-import deleteBtn from './deleteBtn';
-import projects, { openProject, saveToLocalStorage } from './projects';
+import todoList, { priorities } from "./todos";
+import deleteBtn from "./deleteBtn";
+import projects, { openProject, saveToLocalStorage } from "./projects";
 
 const backToList = (project, projectIndex) => {
-  const wrapper = document.getElementById('wrapper');
-  wrapper.innerText = '';
+  const wrapper = document.getElementById("wrapper");
+  wrapper.innerText = "";
   wrapper.appendChild(todoList(project, projectIndex));
 };
 
@@ -24,7 +24,8 @@ const deleteToDo = (project, index, projectIndex) => {
 };
 
 const moveToProject = (todo, currentIndex, projectIndex) => {
-  const targetProjectIndex = parseInt(document.getElementById('move-id').value[0], 10) - 1;
+  const targetProjectIndex =
+    parseInt(document.getElementById("move-id").value[0], 10) - 1;
   if (targetProjectIndex >= 0) {
     const availableProjects = projects();
     const oldProject = availableProjects[projectIndex];
@@ -37,7 +38,7 @@ const moveToProject = (todo, currentIndex, projectIndex) => {
 };
 
 const changePriority = (todo, project, index, projectIndex) => {
-  const newPriority = document.getElementById('priority-id').value;
+  const newPriority = document.getElementById("priority-id").value;
   if (newPriority) {
     todo.priority = newPriority;
     const availableProjects = projects();
@@ -48,14 +49,14 @@ const changePriority = (todo, project, index, projectIndex) => {
 };
 
 const showToDo = (todo, project, index, projectIndex) => {
-  const wrapper = document.getElementById('wrapper');
-  const todoCard = document.createElement('div');
+  const wrapper = document.getElementById("wrapper");
+  const todoCard = document.createElement("div");
   todoCard.classList.add(
-    'project-list',
-    'card-style',
-    'mx-3',
-    'my-5',
-    'text-center',
+    "project-list",
+    "card-style",
+    "mx-3",
+    "my-5",
+    "text-center"
   );
   todoCard.innerHTML = `
       <p><span class="font-weight-bold">Title:</span> <span>${todo.title}</span></p>
@@ -63,59 +64,56 @@ const showToDo = (todo, project, index, projectIndex) => {
       <p><span class="font-weight-bold">Due-date: </span><span>${todo.dueDate}</span></p>
       <p><span class="font-weight-bold">Priority:</span><span>${todo.priority}</span></p>
     `;
-  const returnButton = document.createElement('button');
+  const returnButton = document.createElement("button");
   returnButton.classList.add(
-    'back-todo',
-    'my-3',
-    'btn',
-    'btn-lg',
-    'ml-3',
-    'mr-1',
-    'btn-success',
+    "back-todo",
+    "my-3",
+    "btn",
+    "btn-lg",
+    "ml-3",
+    "mr-1",
+    "btn-success"
   );
-  returnButton.innerText = 'Return to to-do list';
+  returnButton.innerText = "Return to to-do list";
   returnButton.onclick = () => backToList(project, projectIndex);
-  wrapper.innerText = '';
+  wrapper.innerText = "";
   wrapper.appendChild(todoCard);
 
   wrapper.appendChild(returnButton);
   wrapper.appendChild(
-    deleteBtn('to-do', () => deleteToDo(project, index, projectIndex)),
+    deleteBtn("to-do", () => deleteToDo(project, index, projectIndex))
   );
-  const projectName = document.createElement('select');
-  const optionDefault = document.createElement('option');
-  optionDefault.innerText = '';
-  projectName.appendChild(optionDefault);
+  const projectName = document.createElement("select");
   let newProjectIndex = 1;
   projects().forEach((project) => {
-    const option = document.createElement('option');
+    const option = document.createElement("option");
     option.innerText = `${newProjectIndex}. ${project.name}`;
     projectName.appendChild(option);
     newProjectIndex += 1;
   });
-  projectName.id = 'move-id';
-  projectName.classList.add('ml-5');
-  projectName.placeholder = 'Move to project';
-  const submit = document.createElement('button');
-  submit.classList.add('my-3', 'btn', 'btn-lg', 'mx-1', 'btn-success');
-  submit.innerText = 'Move to project';
+  projectName.id = "move-id";
+  projectName.options.selectedIndex = projectIndex;
+  projectName.classList.add("ml-5");
+  projectName.placeholder = "Move to project";
+  const submit = document.createElement("button");
+  submit.classList.add("my-3", "btn", "btn-lg", "mx-1", "btn-success");
+  submit.innerText = "Move to project";
   submit.onclick = () => moveToProject(todo, index, projectIndex);
   wrapper.append(projectName, submit);
-  const priorityChange = document.createElement('select');
-  const priorityDefault = document.createElement('option');
-  priorityDefault.innerText = '';
-  priorityChange.appendChild(priorityDefault);
+  const priorityChange = document.createElement("select");
   priorities.forEach((priority) => {
-    const option = document.createElement('option');
+    const option = document.createElement("option");
     option.innerText = priority;
     priorityChange.appendChild(option);
   });
-  priorityChange.id = 'priority-id';
-  priorityChange.classList.add('ml-5');
-  const submitPriority = document.createElement('button');
-  submitPriority.classList.add('btn', 'btn-lg', 'my-2', 'mx-1', 'btn-success');
-  submitPriority.innerText = 'Change priority';
-  submitPriority.onclick = () => changePriority(todo, project, index, projectIndex);
+  priorityChange.id = "priority-id";
+  priorityChange.options.selectedIndex = priorities.indexOf(todo.priority);
+  priorityChange.classList.add("ml-5");
+  const submitPriority = document.createElement("button");
+  submitPriority.classList.add("btn", "btn-lg", "my-2", "mx-1", "btn-success");
+  submitPriority.innerText = "Change priority";
+  submitPriority.onclick = () =>
+    changePriority(todo, project, index, projectIndex);
   wrapper.append(priorityChange, submitPriority);
 };
 

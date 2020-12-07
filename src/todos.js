@@ -3,7 +3,7 @@
 
 import Todo from "./todo";
 import showToDo from "./todoCard";
-import projects, { saveToLocalStorage } from "./projects";
+import projects, { saveToLocalStorage, openProject } from "./projects";
 import { openNotice } from "./notice";
 
 export const priorities = ["High", "Medium", "Low"];
@@ -14,14 +14,14 @@ const createToDo = (project, projectIndex) => {
   const dueDate = document.getElementById("todo-dueDate").value;
   const priority = document.getElementById("todo-priority").value;
   if (title && description && dueDate && priority) {
-    const newToDo = new Todo(title, description, dueDate, priority);
-    project.todos.push(newToDo);
+    const targetProjectIndex =
+      parseInt(document.getElementById("todo-project").value[0], 10) - 1;
     const availableProjects = projects();
-    availableProjects[projectIndex].todos.push(newToDo);
+    const newProject = availableProjects[targetProjectIndex];
+    const newToDo = new Todo(title, description, dueDate, priority);
+    newProject.todos.push(newToDo);
     saveToLocalStorage(availableProjects);
-    const wrapper = document.getElementById("wrapper");
-    wrapper.innerText = "";
-    wrapper.appendChild(todoList(project, projectIndex));
+    openProject(newProject.name, newProject, targetProjectIndex);
   } else {
     openNotice("Please fill in all fields!");
   }
@@ -53,7 +53,6 @@ const showToDoForm = (project, projectIndex) => {
   dueDate.id = "todo-dueDate";
   dueDate.type = "date";
   dueDate.classList.add("my-3", "mx-1", "p-2", "text-muted");
-  dueDate.placeholder = "Enter to-do dueDate";
 
   const priority = document.createElement("select");
   priorities.forEach((choice) => {
@@ -63,13 +62,24 @@ const showToDoForm = (project, projectIndex) => {
   });
   priority.id = "todo-priority";
   priority.classList.add("my-3", "mx-1", "p-2");
-  priority.placeholder = "Choose priority";
+
+  const projectToAdd = document.createElement("select");
+  let newProjectIndex = 1;
+  projects().forEach((choice) => {
+    const option = document.createElement("option");
+    option.innerText = `${newProjectIndex}. ${choice.name}`;
+    projectToAdd.appendChild(option);
+    newProjectIndex += 1;
+  });
+  projectToAdd.id = "todo-project";
+  projectToAdd.options.selectedIndex = projectIndex;
+  projectToAdd.classList.add("my-3", "mx-1", "p-2");
 
   const submit = document.createElement("button");
   submit.classList.add("btn", "btn-lg", "btn-success", "m-2");
   submit.innerText = "Add To-Do";
   submit.onclick = () => createToDo(project, projectIndex);
-  toDoForm.append(title, description, dueDate, priority, submit);
+  toDoForm.append(title, description, dueDate, priority, projectToAdd, submit);
 
   wrapper.innerText = "";
   wrapper.appendChild(toDoForm);
