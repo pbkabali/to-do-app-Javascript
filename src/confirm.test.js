@@ -13,7 +13,6 @@ test("clears the confirm window", () => {
 
 test("creates the confirm modal", () => {
   const action = jest.fn();
-  const hideConfirmView = jest.fn();
   const msg = "delete?";
   expect(confirm(msg, action).id).toBe("confirm");
 });
