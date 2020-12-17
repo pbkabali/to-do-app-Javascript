@@ -1,6 +1,10 @@
-// const sum = require('./sum');
-// import { sum } from './confirm';
+import { hideConfirmView } from "./confirm";
 
-// test('adds 1 + 2 to equal 3', () => {
-//   expect(sum(1, 2)).toBe(3);
-// });
+const confirmWindow = document.createElement("div");
+confirmWindow.innerText = "CONFIRM TEXT";
+
+test("clears the confirm window", () => {
+  hideConfirmView();
+  expect(confirmWindow.outerHTML).toBe("<div></div>");
+  expect(confirmWindow.innerText).toBe("");
+});
