@@ -1,10 +1,13 @@
-import { hideConfirmView } from "./confirm";
+import {hideConfirmView} from "./confirm";
 
-const confirmWindow = document.createElement("div");
-confirmWindow.innerText = "CONFIRM TEXT";
 
 test("clears the confirm window", () => {
-  hideConfirmView();
-  expect(confirmWindow.outerHTML).toBe("<div></div>");
-  expect(confirmWindow.innerText).toBe("");
+    const confirmWindow = document.createElement("div");
+    confirmWindow.id = 'notification-div';
+    document.body.appendChild(confirmWindow);
+    confirmWindow.innerText = "CONFIRM TEXT";
+    hideConfirmView();
+    expect(confirmWindow.outerHTML).toBe("<div id=\"notification-div\"></div>");
+    expect(confirmWindow.id).toBe('notification-div');
+    expect(confirmWindow.innerText).toBe("");
 });
