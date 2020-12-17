@@ -37,4 +37,9 @@ const confirm = (msg, action) => {
   return modal;
 };
 
+// export const sum = (a, b) => {
+//   return a + b;
+// }
+// module.exports = sum;
+
 export default confirm;
