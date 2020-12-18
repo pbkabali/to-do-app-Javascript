@@ -1,6 +1,6 @@
 import confirm, { hideConfirmView } from "./confirm";
 
-describe('close confirmation function', () => {
+describe("close confirmation function", () => {
   test("clears the confirm window", () => {
     const confirmWindow = document.createElement("div");
     confirmWindow.id = "notification-div";
@@ -11,13 +11,13 @@ describe('close confirmation function', () => {
     expect(confirmWindow.id).toBe("notification-div");
     expect(confirmWindow.innerText).toBe("");
   });
-})
+});
 
-describe('confirmation modal', () => {
+describe("confirmation modal", () => {
   test("creates the confirm modal", () => {
     const action = jest.fn();
     const msg = "delete?";
-    expect(confirm(msg, action).id).toBe("confirm");
+    const confirmModal = confirm(msg, action);
+    expect(confirmModal.id).toBe("confirm");
   });
 });
-
