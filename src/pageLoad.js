@@ -4,7 +4,6 @@ import header from './header';
 import todoList from './todos';
 import notice from './notice';
 
-
 const pageLoad = (projectName, project, projectIndex) => {
   const container = document.getElementById('content');
   const wrapper = document.createElement('div');

@@ -4,7 +4,7 @@
   "description": "Single-page to-do list app",
   "main": "index.js",
   "scripts": {
-    "test": "jest --verbose" ,
+    "test": "jest --verbose",
     "watch": "webpack --watch",
     "dev": "webpack --mode development",
     "build": "webpack --mode production",
@@ -50,6 +50,7 @@
     "bootstrap": "^4.5.3",
     "canvas": "^2.6.1",
     "jquery": "^3.5.1",
+    "jsdom": "^16.4.0",
     "popper.js": "^1.16.1"
   }
 }
