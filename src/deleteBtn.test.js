@@ -1,6 +1,6 @@
 import deleteBtn from "./deleteBtn";
 
-describe("delete todo button", () => {
+describe("test delete todo button", () => {
   test("creates button", () => {
     const action = jest.fn();
     const name = "todo";
