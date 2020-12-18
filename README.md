@@ -42,9 +42,9 @@ Run `npm run build` for one time build of bundle after changes.
 
 Run `npm run watch` to run webpack build in watch mode.
 
-### Usage
+### Tests
 
-Run `npm test` from the root directory to run tests and output the result in the terminal as below:
+Run `npm test` from the root directory to run tests and output the result in the terminal as below.
 
 ![screenshot](./testResults.png)
 
