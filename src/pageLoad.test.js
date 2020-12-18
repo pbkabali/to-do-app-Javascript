@@ -1,7 +1,7 @@
 import pageLoad from './pageLoad';
 
-describe('', () => {
-  test('', () => {
+describe('Start page', () => {
+  test('it loads content', () => {
     const wrapper = document.createElement('div');
     wrapper.id = 'content';
     document.body.appendChild(wrapper);
