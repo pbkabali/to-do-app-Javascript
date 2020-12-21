@@ -26,7 +26,7 @@ const createToDo = () => {
   }
 };
 
-const showToDoForm = (project, projectIndex) => {
+const showToDoForm = (projectIndex) => {
   const wrapper = document.getElementById('wrapper');
   const toDoForm = document.createElement('div');
   toDoForm.classList.add(

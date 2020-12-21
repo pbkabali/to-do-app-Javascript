@@ -1,4 +1,4 @@
-const toggleNoticeView = () => {
+export const toggleNoticeView = () => {
   const notice = document.getElementById('notice');
   notice.classList.toggle('d-none');
 };

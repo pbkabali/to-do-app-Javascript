@@ -1,4 +1,4 @@
-const hideConfirmView = () => {
+export const hideConfirmView = () => {
   const confirm = document.getElementById('notification-div');
   confirm.innerText = '';
 };

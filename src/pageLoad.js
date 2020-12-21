@@ -4,8 +4,8 @@ import header from './header';
 import todoList from './todos';
 import notice from './notice';
 
-const container = document.getElementById('content');
 const pageLoad = (projectName, project, projectIndex) => {
+  const container = document.getElementById('content');
   const wrapper = document.createElement('div');
   wrapper.id = 'wrapper';
   wrapper.appendChild(todoList(project, projectIndex));
